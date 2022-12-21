@@ -112,7 +112,7 @@
         <item>
          <widget class="QLabel" name="ext_name_2">
           <property name="text">
-           <string>Extención:</string>
+           <string>Extensión:</string>
           </property>
          </widget>
         </item>

@@ -1,4 +1,4 @@
-__version__= '1.0'
+__version__= '1.1'
 import os
 import sys
 
@@ -7,7 +7,7 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 ## ==> MAIN WINDOW
-from ui_main import Ui_MainWindow
+from ui_AutoRename import Ui_MainWindow
 
 os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'plugins/platforms'
 
