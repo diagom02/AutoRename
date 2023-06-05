@@ -1,4 +1,4 @@
-__version__= '1.1'
+__version__= '1.2'
 import os
 import sys
 
@@ -17,7 +17,7 @@ class mainWindow(QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
-		self.setWindowIcon(QIcon('ICON.ico'))
+		self.setWindowIcon(QIcon('AutoRename.ico'))
 		self.setWindowTitle(f'AutoRename v{__version__} by @diagom02')
 
 		self.settings = QSettings('remember_options.ini', QSettings.IniFormat)
@@ -28,7 +28,7 @@ class mainWindow(QMainWindow):
 		self.ui.ext_name.setText(self.settings.value("ext_name"))
 		self.ui.final_result.setText(self.settings.value("final_result"))
 
-		if self.settings.value("default_folder") is None:
+		if not self.settings.value("default_folder"):
 			self.ui.default_folder.setText(os.path.join(os.getenv('USERPROFILE'), 'Downloads'))
 
 		self.ui.fansubs.textChanged.connect(self.textChange)
@@ -42,8 +42,9 @@ class mainWindow(QMainWindow):
 		self.show()
 
 	def select_folder(self):
-		folder_dir = QFileDialog.getExistingDirectory(self, 'Select Directory')
-		self.ui.default_folder.setText(str(folder_dir))
+		folder_dir = QFileDialog.getExistingDirectory(self, 'Select Directory',
+																	self.ui.default_folder.text()[2:])
+		self.ui.default_folder.setText(folder_dir if folder_dir else self.ui.default_folder.text())
 
 	def rename_files(self):
 		FanSubs = self.ui.fansubs.text()
@@ -59,7 +60,8 @@ class mainWindow(QMainWindow):
 			for old_name in files:
 				EpNum += 1
 				new_name = f'[{FanSubs}] {AnimeN} - {EpNum:02} [{Calidad}].{ext}'
-				# print(new_name)
+				for i in '\/:*?"<>':
+					if i in new_name: self.show_popup(); return
 				os.rename(path+old_name, path+new_name)
 
 	def textChange(self):
@@ -70,6 +72,12 @@ class mainWindow(QMainWindow):
 
 		self.ui.final_result.setText(f'[{FanSubs}] {AnimeN} - # [{Calidad}].{ext}')
 
+	def show_popup(self):
+		msg = QMessageBox()
+		msg.setWindowTitle('Error')
+		msg.setText('Los nombres de archivo no pueden contener ninguno de los '\
+	      			'siguientes caracteres:\n              \ / : * ? " < >')
+		msg.exec_()
 
 	def closeEvent(self, event):
 		self.settings.setValue("default_folder", self.ui.default_folder.text())

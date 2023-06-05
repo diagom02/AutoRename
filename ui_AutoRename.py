@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'AutoRenamefmszuh.ui'
+## Form generated from reading UI file 'AutoRenameosnJLV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,9 +17,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(550, 205)
-        MainWindow.setMinimumSize(QSize(550, 205))
-        MainWindow.setMaximumSize(QSize(550, 205))
+        MainWindow.resize(550, 223)
+        MainWindow.setMinimumSize(QSize(550, 223))
+        MainWindow.setMaximumSize(QSize(550, 223))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_5 = QVBoxLayout(self.centralwidget)
@@ -112,14 +112,22 @@ class Ui_MainWindow(object):
 
         self.ext_name = QLineEdit(self.centralwidget)
         self.ext_name.setObjectName(u"ext_name")
+        self.ext_name.setMaximumSize(QSize(52, 16777215))
 
-        self.verticalLayout_4.addWidget(self.ext_name)
+        self.verticalLayout_4.addWidget(self.ext_name, 0, Qt.AlignRight)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_4)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout)
+
+        self.line_2 = QFrame(self.centralwidget)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_5.addWidget(self.line_2)
 
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
@@ -131,6 +139,13 @@ class Ui_MainWindow(object):
         self.final_result.setEnabled(False)
 
         self.verticalLayout_5.addWidget(self.final_result)
+
+        self.line_3 = QFrame(self.centralwidget)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_5.addWidget(self.line_3)
 
         self.rename_button = QPushButton(self.centralwidget)
         self.rename_button.setObjectName(u"rename_button")
